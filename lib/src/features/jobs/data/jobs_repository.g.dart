@@ -25,7 +25,7 @@ String _$jobsQueryHash() => r'46482866aecb8be7e41fd6bdb0e2d5a6a87fc350';
 
 /// See also [jobsQuery].
 @ProviderFor(jobsQuery)
-final jobsQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
+final jobsQueryProvider = AutoDisposeProvider<Query<InvalidType>>.internal(
   jobsQuery,
   name: r'jobsQueryProvider',
   debugGetCreateSourceHash:
@@ -34,7 +34,7 @@ final jobsQueryProvider = AutoDisposeProvider<Query<Job>>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef JobsQueryRef = AutoDisposeProviderRef<Query<Job>>;
+typedef JobsQueryRef = AutoDisposeProviderRef<Query<InvalidType>>;
 String _$jobStreamHash() => r'72fc86cf080cd4a6bdb2da9f13ff81efb312521e';
 
 /// Copied from Dart SDK
@@ -63,13 +63,13 @@ class _SystemHash {
 const jobStreamProvider = JobStreamFamily();
 
 /// See also [jobStream].
-class JobStreamFamily extends Family<AsyncValue<Job>> {
+class JobStreamFamily extends Family<AsyncValue<InvalidType>> {
   /// See also [jobStream].
   const JobStreamFamily();
 
   /// See also [jobStream].
   JobStreamProvider call(
-    String jobId,
+    InvalidType jobId,
   ) {
     return JobStreamProvider(
       jobId,
@@ -101,10 +101,10 @@ class JobStreamFamily extends Family<AsyncValue<Job>> {
 }
 
 /// See also [jobStream].
-class JobStreamProvider extends AutoDisposeStreamProvider<Job> {
+class JobStreamProvider extends AutoDisposeStreamProvider<InvalidType> {
   /// See also [jobStream].
   JobStreamProvider(
-    String jobId,
+    InvalidType jobId,
   ) : this._internal(
           (ref) => jobStream(
             ref as JobStreamRef,
@@ -131,11 +131,11 @@ class JobStreamProvider extends AutoDisposeStreamProvider<Job> {
     required this.jobId,
   }) : super.internal();
 
-  final String jobId;
+  final InvalidType jobId;
 
   @override
   Override overrideWith(
-    Stream<Job> Function(JobStreamRef provider) create,
+    Stream<InvalidType> Function(JobStreamRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -152,7 +152,7 @@ class JobStreamProvider extends AutoDisposeStreamProvider<Job> {
   }
 
   @override
-  AutoDisposeStreamProviderElement<Job> createElement() {
+  AutoDisposeStreamProviderElement<InvalidType> createElement() {
     return _JobStreamProviderElement(this);
   }
 
@@ -170,17 +170,17 @@ class JobStreamProvider extends AutoDisposeStreamProvider<Job> {
   }
 }
 
-mixin JobStreamRef on AutoDisposeStreamProviderRef<Job> {
+mixin JobStreamRef on AutoDisposeStreamProviderRef<InvalidType> {
   /// The parameter `jobId` of this provider.
-  String get jobId;
+  InvalidType get jobId;
 }
 
-class _JobStreamProviderElement extends AutoDisposeStreamProviderElement<Job>
-    with JobStreamRef {
+class _JobStreamProviderElement
+    extends AutoDisposeStreamProviderElement<InvalidType> with JobStreamRef {
   _JobStreamProviderElement(super.provider);
 
   @override
-  String get jobId => (origin as JobStreamProvider).jobId;
+  InvalidType get jobId => (origin as JobStreamProvider).jobId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

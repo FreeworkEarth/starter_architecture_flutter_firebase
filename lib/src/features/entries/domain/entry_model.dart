@@ -1,11 +1,11 @@
 //import 'package:equatable/equatable.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/job.dart';
+import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/job_model.dart';
 
 
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'entry.freezed.dart';
-part 'entry.g.dart';
+part 'entry_model.freezed.dart';
+part 'entry_model.g.dart';
 
 typedef EntryID = String;
 
@@ -13,20 +13,20 @@ typedef EntryID = String;
 
 
 @freezed
-class Entry with _$Entry {
-  factory Entry({
-    required EntryID id,
-    required JobID jobId,
-    required DateTime start,
-    required DateTime end,
-    required String comment,}) 
-    = _Entry;
+class EntryModel with _$EntryModel {
+  const factory EntryModel({
+     required EntryID id,
+     required JobID jobId,
+     required DateTime start,
+     required DateTime end,
+     required String comment}) 
+    = _EntryModel;
 
  /*  const Entry._();
   double get durationInHours =>
       end.difference(start).inMinutes.toDouble() / 60.0; */
-  factory Entry.fromJson(Map<String, dynamic> json) =>
-    _$EntryFromJson(json);
+  factory EntryModel.fromJson(Map<String, dynamic> json) =>
+    _EntryModelFromJson(json);
 /* 
   final EntryID id;
   final JobID jobId;

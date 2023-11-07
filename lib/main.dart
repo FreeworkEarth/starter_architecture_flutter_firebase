@@ -10,7 +10,6 @@ import 'package:starter_architecture_flutter_firebase/src/features/onboarding/da
 // ignore:depend_on_referenced_packages
 import 'package:flutter_web_plugins/url_strategy.dart';
 
-import "package:freezed_annotation/freezed_annotation.dart";
 
 
 

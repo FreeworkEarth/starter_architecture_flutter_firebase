@@ -2,21 +2,21 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'job.freezed.dart';
-part 'job.g.dart';
+part 'job_model.freezed.dart';
+part 'job_model.g.dart';
 
 typedef JobID = String;
 
 @freezed
-class Job with _$Job {
-  const factory Job({
+class JobModel with _$JobModel {
+  const factory JobModel({
     required JobID id, 
     required String name, 
     required int ratePerHour})
-    = _Job;
+    = _JobModel;
 
-  factory Job.fromJson(Map<String, dynamic> json) =>
-    _$JobFromJson(json);
+  factory JobModel.fromJson(Map<String, dynamic> json) =>
+    _$JobModelFromJson(json);
 
 /*   final JobID id;
   final String name;
