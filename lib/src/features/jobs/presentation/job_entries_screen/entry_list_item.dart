@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:starter_architecture_flutter_firebase/src/constants/app_sizes.dart';
 import 'package:starter_architecture_flutter_firebase/src/utils/format.dart';
-import 'package:starter_architecture_flutter_firebase/src/features/entries/domain/entry.dart';
+import 'package:starter_architecture_flutter_firebase/src/features/entries/domain/entry_freeze..dart';
 import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/job.dart';
 
 class EntryListItem extends StatelessWidget {
