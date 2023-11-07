@@ -4,8 +4,8 @@ import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/j
 
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'entry_freezed.freezed.dart';
-part 'entry_freeze.g.dart';
+part 'entry.freezed.dart';
+part 'entry.g.dart';
 
 typedef EntryID = String;
 
