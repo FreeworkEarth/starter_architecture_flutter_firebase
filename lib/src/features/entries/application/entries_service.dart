@@ -29,9 +29,9 @@ class EntriesService {
       );
 
   static List<EntryJob> _entriesJobsCombiner(
-      List<Entry> entries, List<Job> jobs) {
+      List<EntryModel> entries, List<JobModel> jobs) {
     return entries.map((entry) {
-      final job = jobs.firstWhere((job) => job.id == entry.jobId);
+      final job = jobs.firstWhere((job) => job.id == entry.jobID);
       return EntryJob(entry, job);
     }).toList();
   }

@@ -12,7 +12,7 @@ import 'package:starter_architecture_flutter_firebase/src/utils/async_value_ui.d
 class EditJobScreen extends ConsumerStatefulWidget {
   const EditJobScreen({super.key, this.jobId, this.job});
   final JobID? jobId;
-  final Job? job;
+  final JobModel? job;
 
   @override
   ConsumerState<EditJobScreen> createState() => _EditJobPageState();

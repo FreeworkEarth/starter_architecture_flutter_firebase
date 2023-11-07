@@ -12,8 +12,8 @@ class EntryListItem extends StatelessWidget {
     this.onTap,
   });
 
-  final Entry entry;
-  final Job job;
+  final EntryModel entry;
+  final JobModel job;
   final VoidCallback? onTap;
 
   @override
@@ -91,8 +91,8 @@ class DismissibleEntryListItem extends StatelessWidget {
   });
 
   final Key dismissibleKey;
-  final Entry entry;
-  final Job job;
+  final EntryModel entry;
+  final JobModel job;
   final VoidCallback? onDismissed;
   final VoidCallback? onTap;
 

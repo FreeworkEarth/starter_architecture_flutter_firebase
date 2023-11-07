@@ -29,8 +29,8 @@ class JobsRepository {
       });
 
   // update
-  Future<void> updateJob({required UserID uid, required Job job}) =>
-      _firestore.doc(jobPath(uid, job.id)).update(job.toMap());
+  Future<void> updateJob({required UserID uid, required JobModel job}) =>
+      _firestore.doc(jobPath(uid, job.id)).update(job as Map<Object, Object?>);
 
   // delete
   Future<void> deleteJob({required UserID uid, required JobID jobId}) async {
@@ -38,8 +38,8 @@ class JobsRepository {
     final entriesRef = _firestore.collection(entriesPath(uid));
     final entries = await entriesRef.get();
     for (final snapshot in entries.docs) {
-      final entry = Entry.fromMap(snapshot.data(), snapshot.id);
-      if (entry.jobId == jobId) {
+      final entry = EntryModel.fromMap(snapshot.data(), snapshot.id);
+      if (entry.jobID == jobId) {
         await snapshot.reference.delete();
       }
     }
@@ -49,29 +49,29 @@ class JobsRepository {
   }
 
   // read
-  Stream<Job> watchJob({required UserID uid, required JobID jobId}) =>
+  Stream<JobModel> watchJob({required UserID uid, required JobID jobId}) =>
       _firestore
           .doc(jobPath(uid, jobId))
-          .withConverter<Job>(
+          .withConverter<JobModel>(
             fromFirestore: (snapshot, _) =>
-                Job.fromMap(snapshot.data()!, snapshot.id),
-            toFirestore: (job, _) => job.toMap(),
+                JobModel.fromMap(snapshot.data()!, snapshot.id),
+            toFirestore: (job, _) => job.toJson(),
           )
           .snapshots()
           .map((snapshot) => snapshot.data()!);
 
-  Stream<List<Job>> watchJobs({required UserID uid}) => queryJobs(uid: uid)
+  Stream<List<JobModel>> watchJobs({required UserID uid}) => queryJobs(uid: uid)
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
-  Query<Job> queryJobs({required UserID uid}) =>
+  Query<JobModel> queryJobs({required UserID uid}) =>
       _firestore.collection(jobsPath(uid)).withConverter(
             fromFirestore: (snapshot, _) =>
-                Job.fromMap(snapshot.data()!, snapshot.id),
-            toFirestore: (job, _) => job.toMap(),
+                JobModel.fromMap(snapshot.data()!, snapshot.id),
+            toFirestore: (job, _) => job.toJson(),
           );
 
-  Future<List<Job>> fetchJobs({required UserID uid}) async {
+  Future<List<JobModel>> fetchJobs({required UserID uid}) async {
     final jobs = await queryJobs(uid: uid).get();
     return jobs.docs.map((doc) => doc.data()).toList();
   }
@@ -83,7 +83,7 @@ JobsRepository jobsRepository(JobsRepositoryRef ref) {
 }
 
 @riverpod
-Query<Job> jobsQuery(JobsQueryRef ref) {
+Query<JobModel> jobsQuery(JobsQueryRef ref) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null');
@@ -93,7 +93,7 @@ Query<Job> jobsQuery(JobsQueryRef ref) {
 }
 
 @riverpod
-Stream<Job> jobStream(JobStreamRef ref, JobID jobId) {
+Stream<JobModel> jobStream(JobStreamRef ref, JobID jobId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null');

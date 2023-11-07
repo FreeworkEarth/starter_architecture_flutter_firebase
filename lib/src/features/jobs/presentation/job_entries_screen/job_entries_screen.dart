@@ -14,7 +14,7 @@ class JobEntriesScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jobAsync = ref.watch(jobStreamProvider(jobId));
-    return ScaffoldAsyncValueWidget<Job>(
+    return ScaffoldAsyncValueWidget<JobModel>(
       value: jobAsync,
       data: (job) => JobEntriesPageContents(job: job),
     );
@@ -23,7 +23,7 @@ class JobEntriesScreen extends ConsumerWidget {
 
 class JobEntriesPageContents extends StatelessWidget {
   const JobEntriesPageContents({super.key, required this.job});
-  final Job job;
+  final JobModel job;
 
   @override
   Widget build(BuildContext context) {

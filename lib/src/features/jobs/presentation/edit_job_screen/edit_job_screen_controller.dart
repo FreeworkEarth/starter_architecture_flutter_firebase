@@ -17,7 +17,7 @@ class EditJobScreenController extends _$EditJobScreenController {
 
   Future<bool> submit(
       {JobID? jobId,
-      Job? oldJob,
+      JobModel? oldJob,
       required String name,
       required int ratePerHour}) async {
     final currentUser = ref.read(authRepositoryProvider).currentUser;
@@ -42,7 +42,7 @@ class EditJobScreenController extends _$EditJobScreenController {
     } else {
       // job previously existed
       if (jobId != null) {
-        final job = Job(id: jobId, name: name, ratePerHour: ratePerHour);
+        final job = JobModel(id: jobId, name: name, ratePerHour: ratePerHour);
         state = await AsyncValue.guard(
           () => repository.updateJob(uid: currentUser.uid, job: job),
         );

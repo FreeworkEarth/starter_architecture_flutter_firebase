@@ -37,9 +37,9 @@ class EntryScreenController extends _$EntryScreenController {
             comment: comment,
           ));
     } else {
-      final entry = Entry(
+      final entry = EntryModel(
         id: entryId,
-        jobId: jobId,
+        jobID: jobId,
         start: start,
         end: end,
         comment: comment,

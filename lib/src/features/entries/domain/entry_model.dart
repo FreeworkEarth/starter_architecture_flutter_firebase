@@ -20,4 +20,28 @@ class EntryModel with _$EntryModel {
       end.difference(start).inMinutes.toDouble() / 60.0;
   factory EntryModel.fromJson(Map<String, dynamic> json) =>
       _$EntryModelFromJson(json);
+
+
+
+  
+  factory EntryModel.fromMap(Map<dynamic, dynamic> value, EntryID id) {
+    final startMilliseconds = value['start'] as int;
+    final endMilliseconds = value['end'] as int;
+    return EntryModel(
+      id: id,
+      jobID: value['jobId'] as String,
+      start: DateTime.fromMillisecondsSinceEpoch(startMilliseconds),
+      end: DateTime.fromMillisecondsSinceEpoch(endMilliseconds),
+      comment: value['comment'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'jobId': jobID,
+      'start': start.millisecondsSinceEpoch,
+      'end': end.millisecondsSinceEpoch,
+      'comment': comment,
+    };
+  }    
 }

@@ -31,7 +31,7 @@ class JobsScreen extends StatelessWidget {
             (_, state) => state.showAlertDialogOnError(context),
           );
           final jobsQuery = ref.watch(jobsQueryProvider);
-          return FirestoreListView<Job>(
+          return FirestoreListView<JobModel>(
             query: jobsQuery,
             emptyBuilder: (context) => const Center(child: Text('No data')),
             errorBuilder: (context, error, stackTrace) => Center(
@@ -67,7 +67,7 @@ class JobsScreen extends StatelessWidget {
 class JobListTile extends StatelessWidget {
   const JobListTile({Key? key, required this.job, this.onTap})
       : super(key: key);
-  final Job job;
+  final JobModel job;
   final VoidCallback? onTap;
 
   @override

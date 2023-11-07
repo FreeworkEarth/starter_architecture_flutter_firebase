@@ -14,7 +14,7 @@ class JobsScreenController extends _$JobsScreenController {
     // ok to leave this empty if the return type is FutureOr<void>
   }
 
-  Future<void> deleteJob(Job job) async {
+  Future<void> deleteJob(JobModel job) async {
     final currentUser = ref.read(authRepositoryProvider).currentUser;
     if (currentUser == null) {
       throw AssertionError('User can\'t be null');

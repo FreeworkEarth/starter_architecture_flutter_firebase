@@ -17,7 +17,7 @@ class EntryScreen extends ConsumerStatefulWidget {
   const EntryScreen({super.key, required this.jobId, this.entryId, this.entry});
   final JobID jobId;
   final EntryID? entryId;
-  final Entry? entry;
+  final EntryModel? entry;
 
   @override
   ConsumerState<EntryScreen> createState() => _EntryPageState();

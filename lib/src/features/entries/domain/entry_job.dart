@@ -5,8 +5,8 @@ import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/j
 class EntryJob extends Equatable {
   const EntryJob(this.entry, this.job);
 
-  final Entry entry;
-  final Job job;
+  final EntryModel entry;
+  final JobModel job;
 
   @override
   List<Object?> get props => [entry, job];

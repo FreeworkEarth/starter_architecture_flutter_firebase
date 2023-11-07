@@ -31,7 +31,7 @@ class EntriesRepository {
   // update
   Future<void> updateEntry({
     required UserID uid,
-    required Entry entry,
+    required EntryModel entry,
   }) =>
       _firestore.doc(entryPath(uid, entry.id)).update(entry.toMap());
 
@@ -40,16 +40,16 @@ class EntriesRepository {
       _firestore.doc(entryPath(uid, entryId)).delete();
 
   // read
-  Stream<List<Entry>> watchEntries({required UserID uid, JobID? jobId}) =>
+  Stream<List<EntryModel>> watchEntries({required UserID uid, JobID? jobId}) =>
       queryEntries(uid: uid, jobId: jobId)
           .snapshots()
           .map((snapshot) => snapshot.docs.map((doc) => doc.data()).toList());
 
-  Query<Entry> queryEntries({required UserID uid, JobID? jobId}) {
-    Query<Entry> query =
-        _firestore.collection(entriesPath(uid)).withConverter<Entry>(
+  Query<EntryModel> queryEntries({required UserID uid, JobID? jobId}) {
+    Query<EntryModel> query =
+        _firestore.collection(entriesPath(uid)).withConverter<EntryModel>(
               fromFirestore: (snapshot, _) =>
-                  Entry.fromMap(snapshot.data()!, snapshot.id),
+                  EntryModel.fromMap(snapshot.data()!, snapshot.id),
               toFirestore: (entry, _) => entry.toMap(),
             );
     if (jobId != null) {
@@ -64,7 +64,7 @@ final entriesRepositoryProvider = Provider<EntriesRepository>((ref) {
 });
 
 final jobEntriesQueryProvider =
-    Provider.autoDispose.family<Query<Entry>, JobID>((ref, jobId) {
+    Provider.autoDispose.family<Query<EntryModel>, JobID>((ref, jobId) {
   final user = ref.watch(firebaseAuthProvider).currentUser;
   if (user == null) {
     throw AssertionError('User can\'t be null when fetching jobs');

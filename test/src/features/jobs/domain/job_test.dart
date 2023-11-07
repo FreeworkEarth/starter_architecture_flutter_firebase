@@ -4,11 +4,11 @@ import 'package:starter_architecture_flutter_firebase/src/features/jobs/domain/j
 void main() {
   group('fromMap', () {
     test('job with all properties', () {
-      final job = Job.fromMap(const {
+      final job = JobModel.fromMap(const {
         'name': 'Blogging',
         'ratePerHour': 10,
       }, 'abc');
-      expect(job, const Job(name: 'Blogging', ratePerHour: 10, id: 'abc'));
+      expect(job, const JobModel(name: 'Blogging', ratePerHour: 10, id: 'abc'));
     });
 
     test('missing name', () {
@@ -16,7 +16,7 @@ void main() {
       // * _CastError:<type 'Null' is not a subtype of type 'String' in type cast>
       // * We can detect it by expecting that the test throws a TypeError
       expect(
-          () => Job.fromMap(const {
+          () => JobModel.fromMap(const {
                 'ratePerHour': 10,
               }, 'abc'),
           throwsA(isInstanceOf<TypeError>()));
@@ -25,8 +25,10 @@ void main() {
 
   group('toMap', () {
     test('valid name, ratePerHour', () {
-      const job = Job(name: 'Blogging', ratePerHour: 10, id: 'abc');
-      expect(job.toMap(), {
+      const job = JobModel(name: 'Blogging', ratePerHour: 10, id: 'abc');
+      expect(JobModel.toMap(const {
+                'ratePerHour': 10,
+              }, 'abc'), {
         'name': 'Blogging',
         'ratePerHour': 10,
       });
@@ -35,13 +37,13 @@ void main() {
 
   group('equality', () {
     test('different properties, equality returns false', () {
-      const job1 = Job(name: 'Blogging', ratePerHour: 10, id: 'abc');
-      const job2 = Job(name: 'Blogging', ratePerHour: 5, id: 'abc');
+      const job1 = JobModel(name: 'Blogging', ratePerHour: 10, id: 'abc');
+      const job2 = JobModel(name: 'Blogging', ratePerHour: 5, id: 'abc');
       expect(job1 == job2, false);
     });
     test('same properties, equality returns true', () {
-      const job1 = Job(name: 'Blogging', ratePerHour: 10, id: 'abc');
-      const job2 = Job(name: 'Blogging', ratePerHour: 10, id: 'abc');
+      const job1 = JobModel(name: 'Blogging', ratePerHour: 10, id: 'abc');
+      const job2 = JobModel(name: 'Blogging', ratePerHour: 10, id: 'abc');
       expect(job1 == job2, true);
     });
   });

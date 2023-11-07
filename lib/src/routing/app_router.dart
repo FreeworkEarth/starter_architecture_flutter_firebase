@@ -145,7 +145,7 @@ GoRouter goRouter(GoRouterRef ref) {
                         pageBuilder: (context, state) {
                           final jobId = state.pathParameters['id']!;
                           final entryId = state.pathParameters['eid']!;
-                          final entry = state.extra as Entry?;
+                          final entry = state.extra as EntryModel?;
                           return MaterialPage(
                             child: EntryScreen(
                               jobId: jobId,
@@ -160,7 +160,7 @@ GoRouter goRouter(GoRouterRef ref) {
                         name: AppRoute.editJob.name,
                         pageBuilder: (context, state) {
                           final jobId = state.pathParameters['id'];
-                          final job = state.extra as Job?;
+                          final job = state.extra as JobModel?;
                           return MaterialPage(
                             fullscreenDialog: true,
                             child: EditJobScreen(jobId: jobId, job: job),
